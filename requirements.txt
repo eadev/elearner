@@ -1,0 +1,3 @@
+pywebview
+tkinterweb
+pystray
