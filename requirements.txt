@@ -1,3 +1,4 @@
 pywebview
 tkinterweb
 pystray
+py2app

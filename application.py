@@ -4,8 +4,14 @@ import webview
 import time
 
 class Browser:
-    def __init__(self, title, url):
-        self.window = webview.create_window(title, url, min_size=(450, 700), height=700, width=450, confirm_close=True)
+    def __init__(self, title):
+        # LEEMOS EL CACHE CON LAS URLS DE NAVEGACIÓN
+        furl = open("cache.txt", "r")
+        urls = furl.readlines()
+        # OBTENEMOS LA ÚLTIMA URL DEL CACHE
+        url_cache = urls[0]
+        # ABRIMOS LA URL ÚLTIMA
+        self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True)
 
     def get_window(self):
         return self.window
@@ -35,12 +41,12 @@ class Browser:
 
 
     def on_loaded(self):
-        print('DOM is ready')
-
-        # unsubscribe event listener
-        #webview.windows[0].loaded -= on_loaded
-        #webview.windows[0].load_url('https://rust-book.cs.brown.edu')
-        print(self.window.get_current_url())
+        print('Elearner - Page Loaded.')
+        url = self.window.get_current_url()
+        # REMEMBER THE PATH
+        fcache = open("cache.txt", "w")
+        fcache.write(url)
+        fcache.close()
 
     def on_resized(self, width, height):
         print('pywebview window is resized. new dimensions are {width} x {height}'.format(width=width, height=height))
@@ -48,8 +54,6 @@ class Browser:
 
     def on_moved(self, x, y):
         print('pywebview window is moved. new coordinates are x: {x}, y: {y}'.format(x=x, y=y))
-
-
 
     def start(self):
         try:
@@ -68,5 +72,5 @@ class Browser:
             traceback.print_exc()
 
 if __name__ == '__main__':
-    owindow = Browser("Aprendiendo Rust!", "https://rust-book.cs.brown.edu")
+    owindow = Browser("Aprendiendo Rust!")
     owindow.start()
