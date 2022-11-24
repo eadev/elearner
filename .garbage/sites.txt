@@ -1,3 +1,0 @@
-https://rust-book.cs.brown.edu/
-https://www.rust-lang.org/
-https://learning-rust.github.io/
