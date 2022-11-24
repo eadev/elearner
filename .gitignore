@@ -39,7 +39,7 @@ Thumbs.db
 *.app
 *.exe
 *.war
-
+venv
 # Large media files
 *.mp4
 *.tiff
