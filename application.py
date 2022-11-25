@@ -2,16 +2,19 @@
 import traceback
 import webview
 import time
+import os
+
+HOME_PATH = os.path.expanduser('~')
 
 class Browser:
     def __init__(self, title):
         try:
             # LEEMOS EL CACHE CON LAS URLS DE NAVEGACIÓN
-            furl = open("/tmp/elearner.txt", "r")
+            furl = open(f"{HOME_PATH}/elearner.txt", "r")
             urls = furl.readlines()
             # OBTENEMOS LA ÚLTIMA URL DEL CACHE
             url_cache = urls[0]
-            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True)
+            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True, resizable=False)
         except Exception as exp:
             url_cache = "https://rust-book.cs.brown.edu/"
             # ABRIMOS LA URL ÚLTIMA
@@ -48,7 +51,7 @@ class Browser:
         print('Elearner - Page Loaded.')
         url = self.window.get_current_url()
         # REMEMBER THE PATH
-        fcache = open("/tmp/elearner.txt", "w")
+        fcache = open(f"{HOME_PATH}/elearner.txt", "w")
         fcache.write(url)
         fcache.close()
 
