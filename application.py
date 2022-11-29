@@ -18,7 +18,7 @@ class Browser:
         except Exception as exp:
             url_cache = "https://rust-book.cs.brown.edu/"
             # ABRIMOS LA URL ÚLTIMA
-            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True)
+            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True, resizable=False)
 
     def get_window(self):
         return self.window
