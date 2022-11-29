@@ -14,11 +14,11 @@ class Browser:
             urls = furl.readlines()
             # OBTENEMOS LA ÚLTIMA URL DEL CACHE
             url_cache = urls[0]
-            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True, resizable=False)
+            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True, resizable=False,text_select=True)
         except Exception as exp:
             url_cache = "https://rust-book.cs.brown.edu/"
             # ABRIMOS LA URL ÚLTIMA
-            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True, resizable=False)
+            self.window = webview.create_window(title, url_cache, min_size=(450, 700), height=700, width=450, confirm_close=True, resizable=False, text_select=True)
 
     def get_window(self):
         return self.window
